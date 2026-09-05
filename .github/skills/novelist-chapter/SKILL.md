@@ -26,4 +26,4 @@ Skill or shared reference unless a failed CLI check names one as necessary.
    query and `--receipt chapters/tasks/<NN>.md`.
 6. Run `sdd.py gate`. Stop unless it passes.
 7. Stop and instruct the user to run
-   `/novelist-skills:novelist-write <project> <chapter-number>`.
+   `/novelist-write <project> <chapter-number>`.

@@ -1,0 +1,56 @@
+{
+  "characters": [
+    {
+      "id": "a-you",
+      "name": "阿佑",
+      "aliases": [],
+      "role": "protagonist",
+      "personality": "十七歲男性，擅長計算機率，習慣把危機視為賭局。外表冷靜、分析迅速，實際上害怕失去控制，也傾向先計算代價再決定是否救人。",
+      "status": "active",
+      "current_location": "未知高樓頂樓的玻璃橋起點",
+      "first_appearance_chapter": 1,
+      "last_seen_chapter": 0,
+      "last_event": "故事開始前與阿釘、白鴉、小滿一同受困於未知高樓頂樓。",
+      "return_condition": "不適用；目前仍在場。"
+    },
+    {
+      "id": "a-ding",
+      "name": "阿釘",
+      "aliases": [],
+      "role": "supporting",
+      "personality": "十八歲男性，嘴硬、愛逞強，害怕時會用玩笑壓住恐慌。他有懼高症，卻把承認恐懼視為輸掉賭局。",
+      "status": "active",
+      "current_location": "未知高樓頂樓的玻璃橋起點",
+      "first_appearance_chapter": 1,
+      "last_seen_chapter": 0,
+      "last_event": "故事開始前受困於頂樓，尚未承認自己懼高。",
+      "return_condition": "不適用；目前仍在場。"
+    },
+    {
+      "id": "white-crow",
+      "name": "白鴉",
+      "aliases": [],
+      "role": "supporting",
+      "personality": "十七歲女性，理性寡言、觀察力強，會記住他人說過的細節。她習慣先保留判斷，因此在壓力下顯得難以信任。",
+      "status": "active",
+      "current_location": "未知高樓頂樓的玻璃橋起點",
+      "first_appearance_chapter": 1,
+      "last_seen_chapter": 0,
+      "last_event": "故事開始前曾點擊匿名訊息中的『加入賭局』，但未將此事告訴其他人。",
+      "return_condition": "不適用；目前仍在場。"
+    },
+    {
+      "id": "xiao-man",
+      "name": "小滿",
+      "aliases": [],
+      "role": "supporting",
+      "personality": "十六歲女性，安靜敏感，對環境與他人的情緒變化很警覺。她看似膽小，真正需要選擇時反而能果斷行動。",
+      "status": "active",
+      "current_location": "未知高樓頂樓的玻璃橋起點",
+      "first_appearance_chapter": 1,
+      "last_seen_chapter": 0,
+      "last_event": "故事開始前受困於頂樓，最早注意到螢幕倒數與燈光閃爍的節奏相同。",
+      "return_condition": "不適用；目前仍在場。"
+    }
+  ]
+}

@@ -22,6 +22,6 @@ Skill or shared reference unless a failed CLI check names one as necessary.
    A non-active character may return only when the task explicitly plans it and
    the user approves `--allow-return`.
 5. Stop and instruct the user to review the draft with
-   `/novelist-skills:novelist-review <project> <chapter-number>`.
+   `/novelist-review <project> <chapter-number>`.
 
 The Plugin `PreToolUse` hook independently enforces the same drafting gate.

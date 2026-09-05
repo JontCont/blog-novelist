@@ -25,4 +25,4 @@ Skill or shared reference unless a failed CLI check names one as necessary.
    the agent must not check boxes on the user's behalf.
 5. After the reviewer completes the checklist and explicitly approves the
    specification, run `sdd.py approve <project> spec.md`.
-6. Stop and instruct the user to run `/novelist-skills:novelist-plan <project>`.
+6. Stop and instruct the user to run `/novelist-plan <project>`.

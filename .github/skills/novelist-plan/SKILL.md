@@ -24,4 +24,4 @@ Skill or shared reference unless a failed CLI check names one as necessary.
 6. Build `outline/outline.md` from approved spec and canon. Complete its
    Constitution Check and obtain explicit user approval before recording it.
 7. Stop and instruct the user to run
-   `/novelist-skills:novelist-chapter <project> <chapter-number>`.
+   `/novelist-chapter <project> <chapter-number>`.

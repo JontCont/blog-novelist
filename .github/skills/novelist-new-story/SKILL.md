@@ -24,6 +24,6 @@ the `skill_context` v1 marker used by later reminder-only commands.
 4. Run [sdd.py](../../novelist-skills/shared/novelist/scripts/sdd.py) `approve` for
    `constitution.md` only after that approval.
 5. Stop. Report the project path and instruct the user to run
-   `/novelist-skills:novelist-rule <project>` next.
+   `/novelist-rule <project>` next.
 
 Never approve the constitution implicitly. Never mark reviewer checklists.
