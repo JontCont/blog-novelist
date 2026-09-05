@@ -1,0 +1,4 @@
+[submodule ".github/novelist-skills"]
+	path = .github/novelist-skills
+	url = https://github.com/JontCont/novelist-skills.git
+	branch = main
