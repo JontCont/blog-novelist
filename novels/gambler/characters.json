@@ -9,8 +9,8 @@
       "status": "active",
       "current_location": "未知高樓頂樓的玻璃橋起點",
       "first_appearance_chapter": 1,
-      "last_seen_chapter": 0,
-      "last_event": "故事開始前與阿釘、白鴉、小滿一同受困於未知高樓頂樓。",
+      "last_seen_chapter": 1,
+      "last_event": "阿佑帶領阿釘、白鴉與小滿通過三段玻璃橋；白燈節奏、阿釘的懼高與白鴉的匿名邀請依序揭露，阿佑拒絕犧牲白鴉並親自下注。四人抵達對面門前，卻見原頂樓重新開始九十秒倒數。",
       "return_condition": "不適用；目前仍在場。"
     },
     {
@@ -22,8 +22,8 @@
       "status": "active",
       "current_location": "未知高樓頂樓的玻璃橋起點",
       "first_appearance_chapter": 1,
-      "last_seen_chapter": 0,
-      "last_event": "故事開始前受困於頂樓，尚未承認自己懼高。",
+      "last_seen_chapter": 1,
+      "last_event": "阿佑帶領阿釘、白鴉與小滿通過三段玻璃橋；白燈節奏、阿釘的懼高與白鴉的匿名邀請依序揭露，阿佑拒絕犧牲白鴉並親自下注。四人抵達對面門前，卻見原頂樓重新開始九十秒倒數。",
       "return_condition": "不適用；目前仍在場。"
     },
     {
@@ -35,8 +35,8 @@
       "status": "active",
       "current_location": "未知高樓頂樓的玻璃橋起點",
       "first_appearance_chapter": 1,
-      "last_seen_chapter": 0,
-      "last_event": "故事開始前曾點擊匿名訊息中的『加入賭局』，但未將此事告訴其他人。",
+      "last_seen_chapter": 1,
+      "last_event": "阿佑帶領阿釘、白鴉與小滿通過三段玻璃橋；白燈節奏、阿釘的懼高與白鴉的匿名邀請依序揭露，阿佑拒絕犧牲白鴉並親自下注。四人抵達對面門前，卻見原頂樓重新開始九十秒倒數。",
       "return_condition": "不適用；目前仍在場。"
     },
     {
@@ -48,8 +48,8 @@
       "status": "active",
       "current_location": "未知高樓頂樓的玻璃橋起點",
       "first_appearance_chapter": 1,
-      "last_seen_chapter": 0,
-      "last_event": "故事開始前受困於頂樓，最早注意到螢幕倒數與燈光閃爍的節奏相同。",
+      "last_seen_chapter": 1,
+      "last_event": "阿佑帶領阿釘、白鴉與小滿通過三段玻璃橋；白燈節奏、阿釘的懼高與白鴉的匿名邀請依序揭露，阿佑拒絕犧牲白鴉並親自下注。四人抵達對面門前，卻見原頂樓重新開始九十秒倒數。",
       "return_condition": "不適用；目前仍在場。"
     }
   ]

@@ -1,6 +1,24 @@
 {
-  "latest_accepted_chapter": 0,
-  "latest_summary": "尚未開始",
-  "active_character_ids": [],
-  "chapter_history": []
+  "latest_accepted_chapter": 1,
+  "latest_summary": "阿佑帶領阿釘、白鴉與小滿通過三段玻璃橋；白燈節奏、阿釘的懼高與白鴉的匿名邀請依序揭露，阿佑拒絕犧牲白鴉並親自下注。四人抵達對面門前，卻見原頂樓重新開始九十秒倒數。",
+  "active_character_ids": [
+    "a-you",
+    "a-ding",
+    "white-crow",
+    "xiao-man"
+  ],
+  "chapter_history": [
+    {
+      "chapter": 1,
+      "title": "賭徒",
+      "summary": "阿佑帶領阿釘、白鴉與小滿通過三段玻璃橋；白燈節奏、阿釘的懼高與白鴉的匿名邀請依序揭露，阿佑拒絕犧牲白鴉並親自下注。四人抵達對面門前，卻見原頂樓重新開始九十秒倒數。",
+      "present_character_ids": [
+        "a-you",
+        "a-ding",
+        "white-crow",
+        "xiao-man"
+      ],
+      "character_returns": {}
+    }
+  ]
 }
