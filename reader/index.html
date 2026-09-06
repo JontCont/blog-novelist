@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>小說庫</title>
+    <style>
+      :root {
+        --reader-ink: #172033;
+        --reader-muted: #657084;
+        --reader-rule: #d9e0e8;
+        --reader-accent: #b44b3f;
+        --reader-paper: #fcfdff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        color: var(--reader-ink);
+        background: var(--reader-paper);
+        font-family: "Noto Serif TC", "Source Han Serif TC", "PMingLiU", Georgia, serif;
+        line-height: 1.9;
+      }
+
+      .reader-shell {
+        width: min(100%, 820px);
+        margin: 0 auto;
+        padding: 44px clamp(20px, 5vw, 60px) 88px;
+      }
+
+      .reader-header {
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--reader-rule);
+      }
+
+      .reader-eyebrow {
+        margin: 0 0 8px;
+        color: var(--reader-accent);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .reader-header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 6vw, 3rem);
+        line-height: 1.2;
+      }
+
+      .reader-header p:last-child {
+        max-width: 62ch;
+        margin: 14px 0 0;
+        color: var(--reader-muted);
+      }
+
+      .reader-view[hidden] { display: none; }
+
+      .reader-back {
+        display: inline-block;
+        margin-bottom: 24px;
+        color: var(--reader-accent);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .reader-menu {
+        padding-top: 32px;
+      }
+
+      .reader-menu h2 {
+        margin: 0 0 10px;
+        font-size: 1.25rem;
+      }
+
+      .filter-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .filter-tag {
+        min-height: 34px;
+        padding: 5px 12px;
+        color: var(--reader-muted);
+        border: 1px solid var(--reader-rule);
+        border-radius: 999px;
+        background: #fff;
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        font-size: 0.86rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .filter-tag:hover,
+      .filter-tag[aria-pressed="true"] {
+        color: #fff;
+        border-color: var(--reader-accent);
+        background: var(--reader-accent);
+      }
+
+      .filter-tag:focus-visible {
+        outline: 2px solid var(--reader-accent);
+        outline-offset: 2px;
+      }
+
+      .chapter-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-bottom: 1px solid var(--reader-rule);
+      }
+
+      .novel-list li,
+      .chapter-list li {
+        border-top: 1px solid var(--reader-rule);
+      }
+
+      .novel-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(156px, 200px));
+        gap: 22px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .novel-card__link {
+        display: block;
+        color: var(--reader-ink);
+        text-decoration: none;
+      }
+
+      .novel-card__cover {
+        position: relative;
+        display: block;
+        aspect-ratio: 2 / 3;
+        overflow: hidden;
+        border-radius: 6px;
+        background: #25304a;
+        box-shadow: 0 10px 22px rgba(23, 32, 51, 0.16);
+      }
+
+      .novel-card__cover::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: rgba(23, 32, 51, 0.42);
+      }
+
+      .novel-card__cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 180ms ease;
+      }
+
+      .novel-card__link:hover .novel-card__cover img {
+        transform: scale(1.04);
+      }
+
+      .novel-card__cover-title {
+        position: absolute;
+        z-index: 1;
+        right: 18px;
+        bottom: 18px;
+        left: 18px;
+        color: #fff;
+        font-family: "Noto Serif TC", "Source Han Serif TC", "PMingLiU", Georgia, serif;
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+
+      .novel-card__body {
+        padding-top: 12px;
+      }
+
+      .novel-card__genre {
+        display: block;
+        color: var(--reader-accent);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .novel-card__description {
+        display: block;
+        margin-top: 4px;
+        color: var(--reader-muted);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.65;
+      }
+
+      .reader-menu a {
+        display: block;
+        padding: 18px 0;
+        color: var(--reader-ink);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .reader-menu a:hover {
+        color: var(--reader-accent);
+      }
+
+      .novel-card__link:hover { color: var(--reader-ink); }
+
+      .reader-menu a:focus-visible,
+      .reader-back:focus-visible {
+        outline: 2px solid var(--reader-accent);
+        outline-offset: 3px;
+      }
+
+      .chapter-content {
+        padding-top: 38px;
+        font-size: clamp(1.04rem, 2vw, 1.18rem);
+      }
+
+      .chapter-content h2,
+      .chapter-content h3 {
+        margin: 0 0 28px;
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        line-height: 1.3;
+      }
+
+      .chapter-content p {
+        max-width: 44rem;
+        margin: 0 auto 1.5em;
+      }
+
+      @media (max-width: 600px) {
+        .reader-shell { padding-top: 30px; }
+
+        .novel-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+        }
+
+        .novel-card__cover-title {
+          right: 14px;
+          bottom: 14px;
+          left: 14px;
+          font-size: 1.45rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="reader-shell">
+      <section id="library-view" class="reader-view">
+        <header class="reader-header">
+          <p class="reader-eyebrow">JConte 小說庫</p>
+          <h1 id="library-title">小說庫</h1>
+          <p>選擇作品後查看章節目錄與內容。</p>
+        </header>
+
+        <nav class="reader-menu" aria-label="作品清單">
+          <h2>作品</h2>
+          <div id="genre-filters" class="filter-tags" role="group" aria-label="快速查詢"></div>
+          <ul id="novel-list" class="novel-list"></ul>
+        </nav>
+      </section>
+
+      <section id="novel-view" class="reader-view" hidden>
+        <a class="reader-back" href="#">返回小說庫</a>
+        <header class="reader-header">
+          <p class="reader-eyebrow">作品</p>
+          <h1 id="novel-title"></h1>
+          <p id="novel-description"></p>
+        </header>
+
+        <nav class="reader-menu" aria-label="章節目錄">
+          <h2>章節</h2>
+          <ol id="chapter-list" class="chapter-list"></ol>
+        </nav>
+      </section>
+
+      <section id="chapter-view" class="reader-view" hidden>
+        <a id="chapter-back" class="reader-back" href="#">返回章節目錄</a>
+        <header class="reader-header">
+          <p id="chapter-novel" class="reader-eyebrow"></p>
+          <h1 id="chapter-title"></h1>
+        </header>
+
+        <article id="chapter-content" class="chapter-content" aria-live="polite"></article>
+      </section>
+    </main>
+
+    <script>
+      (async function () {
+        const chapterContent = document.getElementById('chapter-content');
+        const libraryTitle = document.getElementById('library-title');
+        const novelDescription = document.getElementById('novel-description');
+        const novelList = document.getElementById('novel-list');
+        const genreFilters = document.getElementById('genre-filters');
+        const novelTitle = document.getElementById('novel-title');
+        const chapterList = document.getElementById('chapter-list');
+        const chapterNovel = document.getElementById('chapter-novel');
+        const chapterTitle = document.getElementById('chapter-title');
+        const chapterBack = document.getElementById('chapter-back');
+        const libraryView = document.getElementById('library-view');
+        const novelView = document.getElementById('novel-view');
+        const chapterView = document.getElementById('chapter-view');
+        const novelsBySlug = new Map();
+        const chaptersById = new Map();
+        let activeGenre = '全部';
+        const library = await fetch('library.json').then(function (response) {
+          if (!response.ok) throw new Error('無法載入小說庫資料。');
+          return response.json();
+        });
+
+        function escapeHtml(value) {
+          return value
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+        }
+
+        function renderInline(value) {
+          return escapeHtml(value).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        }
+
+        function renderMarkdown(markdown) {
+          return markdown.trim().split(/\r?\n\s*\r?\n/).map(function (block) {
+            const heading = block.match(/^(#{1,6})\s+(.+)$/);
+            if (heading) {
+              if (heading[1].length === 1) return '';
+              const level = Math.min(heading[1].length + 1, 6);
+              return '<h' + level + '>' + renderInline(heading[2]) + '</h' + level + '>';
+            }
+            return '<p>' + renderInline(block).replace(/\r?\n/g, '<br>') + '</p>';
+          }).join('');
+        }
+
+        function showView(view) {
+          libraryView.hidden = view !== libraryView;
+          novelView.hidden = view !== novelView;
+          chapterView.hidden = view !== chapterView;
+        }
+
+        function renderLibrary() {
+          showView(libraryView);
+        }
+
+        function renderNovel(novel) {
+          novelTitle.textContent = novel.title;
+          novelDescription.textContent = novel.description;
+          chapterList.replaceChildren();
+          novel.chapters.forEach(function (chapter) {
+            const item = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#' + novel.slug + '/' + chapter.number;
+            link.textContent = '第 ' + chapter.number + ' 章：' + chapter.title;
+            item.appendChild(link);
+            chapterList.appendChild(item);
+          });
+          showView(novelView);
+        }
+
+        async function renderChapter(entry) {
+          chapterNovel.textContent = entry.novel.title;
+          chapterTitle.textContent = '第 ' + entry.chapter.number + ' 章：' + entry.chapter.title;
+          chapterBack.href = '#' + entry.novel.slug;
+          chapterContent.textContent = '載入中...';
+          showView(chapterView);
+          const response = await fetch(entry.chapter.source);
+          if (!response.ok) throw new Error('無法載入章節內容。');
+          chapterContent.innerHTML = renderMarkdown(await response.text());
+        }
+
+        function createNovelCard(novel) {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          const cover = document.createElement('span');
+          const image = document.createElement('img');
+          const coverTitle = document.createElement('span');
+          const body = document.createElement('span');
+          const genre = document.createElement('span');
+          const description = document.createElement('span');
+          item.className = 'novel-card';
+          link.href = '#' + novel.slug;
+          link.className = 'novel-card__link';
+          cover.className = 'novel-card__cover';
+          image.src = novel.cover;
+          image.alt = novel.title + '封面';
+          image.loading = 'lazy';
+          coverTitle.className = 'novel-card__cover-title';
+          coverTitle.textContent = novel.title;
+          body.className = 'novel-card__body';
+          genre.className = 'novel-card__genre';
+          genre.textContent = novel.genre;
+          description.className = 'novel-card__description';
+          description.textContent = novel.description;
+          cover.appendChild(image);
+          cover.appendChild(coverTitle);
+          body.appendChild(genre);
+          body.appendChild(description);
+          link.appendChild(cover);
+          link.appendChild(body);
+          item.appendChild(link);
+          return item;
+        }
+
+        function renderNovelList() {
+          novelList.replaceChildren();
+          library.novels
+            .filter(function (novel) {
+              return activeGenre === '全部' || novel.genre === activeGenre;
+            })
+            .forEach(function (novel) {
+              novelList.appendChild(createNovelCard(novel));
+            });
+        }
+
+        function renderGenreFilters() {
+          const genres = ['全部'].concat(Array.from(new Set(library.novels.map(function (novel) {
+            return novel.genre;
+          }))));
+          genreFilters.replaceChildren();
+          genres.forEach(function (genre) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'filter-tag';
+            button.textContent = genre;
+            button.setAttribute('aria-pressed', String(genre === activeGenre));
+            button.addEventListener('click', function () {
+              activeGenre = genre;
+              renderGenreFilters();
+              renderNovelList();
+            });
+            genreFilters.appendChild(button);
+          });
+        }
+
+        libraryTitle.textContent = library.title;
+        library.novels.forEach(function (novel) {
+          novelsBySlug.set(novel.slug, novel);
+
+          novel.chapters.forEach(function (chapter) {
+            const chapterId = novel.slug + ':' + chapter.number;
+            chaptersById.set(chapterId, { novel: novel, chapter: chapter });
+          });
+        });
+        renderGenreFilters();
+        renderNovelList();
+
+        async function renderRoute() {
+          const parts = decodeURIComponent(location.hash.slice(1)).split('/');
+          const novel = novelsBySlug.get(parts[0]);
+          if (!parts[0] || !novel) {
+            renderLibrary();
+            return;
+          }
+
+          if (!parts[1]) {
+            renderNovel(novel);
+            return;
+          }
+
+          const entry = chaptersById.get(novel.slug + ':' + parts[1]);
+          if (!entry) {
+            renderNovel(novel);
+            return;
+          }
+
+          await renderChapter(entry);
+        }
+
+        document.addEventListener('click', function (event) {
+          const link = event.target.closest('.reader-shell a[href^="#"]');
+          if (!link) return;
+
+          event.preventDefault();
+          const hash = link.getAttribute('href');
+          if (location.hash === hash) {
+            renderRoute().catch(function (error) {
+              chapterContent.textContent = error.message;
+            });
+          } else {
+            location.hash = hash;
+          }
+        });
+
+        window.addEventListener('hashchange', function () {
+          renderRoute().catch(function (error) {
+            chapterContent.textContent = error.message;
+          });
+        });
+
+        await renderRoute();
+      })().catch(function (error) {
+        document.getElementById('chapter-content').textContent = error.message;
+      });
+    </script>
+  </body>
+</html>

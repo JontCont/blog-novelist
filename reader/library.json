@@ -1,0 +1,19 @@
+{
+  "title": "小說庫",
+  "novels": [
+    {
+      "slug": "gambler",
+      "title": "賭徒",
+      "genre": "恐怖驚悚",
+      "cover": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=720&q=85",
+      "description": "受困高樓頂端的四名少年，必須穿過三段玻璃橋，才能離開這場以人命為注的賭局。",
+      "chapters": [
+        {
+          "number": 1,
+          "title": "賭徒",
+          "source": "../novels/gambler/chapters/drafts/01.md"
+        }
+      ]
+    }
+  ]
+}
