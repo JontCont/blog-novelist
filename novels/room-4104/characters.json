@@ -11,8 +11,8 @@
       "status": "active",
       "current_location": "宿舍",
       "first_appearance_chapter": 1,
-      "last_seen_chapter": 1,
-      "last_event": "煒因假投資與小額兼職詐騙失去積蓄，面對失業、租約到期與生活費壓力；他在宿舍收到人力銀行的德安大樓夜班警衛面試通知，薪資比一般保全每月多一萬元，決定隔天早上九點前往面試。夜裡手機短暫顯示沒有寄件人的「明天記得帶上自己」，隨即消失；煒仍未前往大樓。",
+      "last_seen_chapter": 2,
+      "last_event": "煒通過德安大樓夜班警衛面試並開始第一天工作；煒回到宿舍後仍無法解釋前輩在下行途中短暫消失的原因。",
       "return_condition": "若從四樓逃出，必須以新的事件記錄確認其狀態；不可直接假定他已安全。"
     },
     {
@@ -27,8 +27,8 @@
       "status": "departed",
       "current_location": "德安大樓外",
       "first_appearance_chapter": 1,
-      "last_seen_chapter": 1,
-      "last_event": "第一天帶煒看過警衛室、電梯與各樓層的正常格局，之後辦理離職。",
+      "last_seen_chapter": 2,
+      "last_event": "完成第二章帶看與交接後離開大樓；煒仍無法解釋他在下行途中短暫消失的原因。",
       "return_condition": "不可在第三天後直接回到大樓；若再次出現，只能透過煒回想第一天的帶看內容或留下的工作交接。"
     },
     {
