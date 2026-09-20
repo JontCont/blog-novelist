@@ -151,6 +151,22 @@
         background: rgba(23, 32, 51, 0.42);
       }
 
+      .novel-card__new {
+        position: absolute;
+        z-index: 2;
+        top: 12px;
+        right: 12px;
+        padding: 4px 8px;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.68);
+        border-radius: 4px;
+        background: var(--reader-accent);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
       .novel-card__cover img {
         width: 100%;
         height: 100%;
@@ -309,6 +325,7 @@
         const chapterView = document.getElementById('chapter-view');
         const novelsBySlug = new Map();
         const chaptersById = new Map();
+        const newWindowMs = 7 * 24 * 60 * 60 * 1000;
         let activeGenre = '全部';
         const library = await fetch('library.json').then(function (response) {
           if (!response.ok) throw new Error('無法載入小說庫資料。');
@@ -338,6 +355,14 @@
             }
             return '<p>' + renderInline(block).replace(/\r?\n/g, '<br>') + '</p>';
           }).join('');
+        }
+
+        function isNewNovel(novel) {
+          if (!novel.publishedAt) return false;
+          const publishedAt = Date.parse(novel.publishedAt);
+          if (!Number.isFinite(publishedAt)) return false;
+          const age = Date.now() - publishedAt;
+          return age >= 0 && age <= newWindowMs;
         }
 
         function showView(view) {
@@ -382,6 +407,7 @@
           const cover = document.createElement('span');
           const image = document.createElement('img');
           const coverTitle = document.createElement('span');
+          const newTag = document.createElement('span');
           const body = document.createElement('span');
           const genre = document.createElement('span');
           const description = document.createElement('span');
@@ -394,12 +420,18 @@
           image.loading = 'lazy';
           coverTitle.className = 'novel-card__cover-title';
           coverTitle.textContent = novel.title;
+          if (isNewNovel(novel)) {
+            newTag.className = 'novel-card__new';
+            newTag.textContent = 'NEW';
+            newTag.setAttribute('aria-label', '新作品');
+          }
           body.className = 'novel-card__body';
           genre.className = 'novel-card__genre';
           genre.textContent = novel.genre;
           description.className = 'novel-card__description';
           description.textContent = novel.description;
           cover.appendChild(image);
+          if (isNewNovel(novel)) cover.appendChild(newTag);
           cover.appendChild(coverTitle);
           body.appendChild(genre);
           body.appendChild(description);
