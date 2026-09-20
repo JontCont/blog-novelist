@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_context": {
+    "protocol": "novelist-sdd",
+    "version": 1
+  },
+  "content_locale": "zh-Hant",
+  "retrieval": {
+    "normalization": "NFKC",
+    "tokenizer": "cjk-bigram",
+    "stopwords": [],
+    "term_aliases": {}
+  }
+}

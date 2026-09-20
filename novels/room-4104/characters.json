@@ -1,0 +1,202 @@
+{
+  "characters": [
+    {
+      "id": "wen",
+      "name": "煒",
+      "aliases": [
+        "Wen"
+      ],
+      "role": "protagonist",
+      "personality": "被詐騙與長期失業使他自我否定、敏感而孤立，但擅長注意環境細節，受逼迫時仍會尋找可驗證的出口。",
+      "status": "active",
+      "current_location": "宿舍",
+      "first_appearance_chapter": 1,
+      "last_seen_chapter": 1,
+      "last_event": "煒因假投資與小額兼職詐騙失去積蓄，面對失業、租約到期與生活費壓力；他在宿舍收到人力銀行的德安大樓夜班警衛面試通知，薪資比一般保全每月多一萬元，決定隔天早上九點前往面試。夜裡手機短暫顯示沒有寄件人的「明天記得帶上自己」，隨即消失；煒仍未前往大樓。",
+      "return_condition": "若從四樓逃出，必須以新的事件記錄確認其狀態；不可直接假定他已安全。"
+    },
+    {
+      "id": "senior-guard",
+      "name": "離職前輩警衛",
+      "aliases": [
+        "前輩",
+        "前任夜班警衛"
+      ],
+      "role": "supporting",
+      "personality": "熟悉十層大樓的正常格局與值勤流程，態度務實，對 4104 的禁忌避而不談。",
+      "status": "departed",
+      "current_location": "德安大樓外",
+      "first_appearance_chapter": 1,
+      "last_seen_chapter": 1,
+      "last_event": "第一天帶煒看過警衛室、電梯與各樓層的正常格局，之後辦理離職。",
+      "return_condition": "不可在第三天後直接回到大樓；若再次出現，只能透過煒回想第一天的帶看內容或留下的工作交接。"
+    },
+    {
+      "id": "demon-4104",
+      "name": "4104 的惡魔",
+      "aliases": [
+        "來電者",
+        "管理員的聲音"
+      ],
+      "role": "antagonist",
+      "personality": "擅長模仿、誘導與扭曲指令，不以暴力立即取勝，而是讓受害者自願走完祭品路線。",
+      "status": "active",
+      "current_location": "4104 與四樓異常空間",
+      "first_appearance_chapter": 3,
+      "last_seen_chapter": 3,
+      "last_event": "在第三天透過電話模仿管理員聲音，引導煒盤查四樓。",
+      "return_condition": "只要 4104 的祭品順序未被中止，就能透過電話、聲音或空間重現再次出現。"
+    },
+    {
+      "id": "manager-10",
+      "name": "前任管理員",
+      "aliases": [
+        "第十名祭品",
+        "管理員"
+      ],
+      "role": "supporting",
+      "personality": "熟悉大樓規則，曾經配合隱瞞真相，最後轉而留下警告並試圖阻止下一次獻祭。",
+      "status": "dead",
+      "current_location": "4104 的殘留意識",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "成為第十名祭品，死於四樓高溫現象；殘留意識改以痕跡協助煒。",
+      "return_condition": "不可復活；只能透過每月整理留下的偏差、物件位置與短暫聲音提供有限協助。"
+    },
+    {
+      "id": "sacrifice-01",
+      "name": "第一名祭品",
+      "aliases": [
+        "第一誡死者"
+      ],
+      "role": "victim",
+      "personality": "把 4104 當成能替自己改變命運的神聖場所。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "以偽信仰標記完成第一階段祭儀後死亡。",
+      "return_condition": "只能以第一階段的標記與殘影出現。"
+    },
+    {
+      "id": "sacrifice-02",
+      "name": "第二名祭品",
+      "aliases": [
+        "第二誡死者"
+      ],
+      "role": "victim",
+      "personality": "執著於打造能取代他人的理想形象。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "在被抹去臉部辨識的異常中死亡，對應第二階段。",
+      "return_condition": "只能以無法辨識的照片、鏡面與人像痕跡出現。"
+    },
+    {
+      "id": "sacrifice-03",
+      "name": "第三名祭品",
+      "aliases": [
+        "第三誡死者"
+      ],
+      "role": "victim",
+      "personality": "習慣用謊言與咒罵掩蓋恐懼。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "在聲音被剝奪的異常中死亡，對應第三階段。",
+      "return_condition": "只能以錄音缺口、無聲口型與被截斷的語句出現。"
+    },
+    {
+      "id": "sacrifice-04",
+      "name": "第四名祭品",
+      "aliases": [
+        "第四誡死者"
+      ],
+      "role": "victim",
+      "personality": "以逃避責任與長時間沉睡回應所有危機。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "在無法醒來的封閉空間中死亡，對應第四階段。",
+      "return_condition": "只能以床鋪、鬧鐘與反覆延遲的時間出現。"
+    },
+    {
+      "id": "sacrifice-05",
+      "name": "第五名祭品",
+      "aliases": [
+        "第五誡死者"
+      ],
+      "role": "victim",
+      "personality": "與家庭關係疏離，卻無法擺脫血緣留下的命令。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "被父母遺物引入無法返回的房內路線，對應第五階段。",
+      "return_condition": "只能以家族遺物、舊照片與血緣稱謂出現。"
+    },
+    {
+      "id": "sacrifice-06",
+      "name": "第六名祭品",
+      "aliases": [
+        "第六誡死者"
+      ],
+      "role": "victim",
+      "personality": "背負曾經造成他人受傷的責任，容易接受自我懲罰。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "被迫重演他人曾遭遇的死亡，對應第六階段。",
+      "return_condition": "只能以重複動作、倒放影像與不屬於自己的傷痕痕跡出現。"
+    },
+    {
+      "id": "sacrifice-07",
+      "name": "第七名祭品",
+      "aliases": [
+        "第七誡死者"
+      ],
+      "role": "victim",
+      "personality": "無法承受親密關係崩解，將他人的界線視為自己的所有物。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "在被分隔、封閉且失去出口的房間結構中死亡，對應第七階段；不涉及性內容。",
+      "return_condition": "只能以被鎖上的內門、分隔線與錯置的兩人生活痕跡出現。"
+    },
+    {
+      "id": "sacrifice-08",
+      "name": "第八名祭品",
+      "aliases": [
+        "第八誡死者"
+      ],
+      "role": "victim",
+      "personality": "把取得他人物品當成解決困境的唯一方法。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "在取用不屬於自己的物件後遭遇致命機械異常，對應第八階段。",
+      "return_condition": "只能以失去歸屬的鑰匙、錢包與被移動的物件出現。"
+    },
+    {
+      "id": "sacrifice-09",
+      "name": "第九名祭品",
+      "aliases": [
+        "第九誡死者"
+      ],
+      "role": "victim",
+      "personality": "擅長扭曲證詞，直到最後仍拒絕承認自己看見的事。",
+      "status": "dead",
+      "current_location": "4104 的歷史痕跡",
+      "first_appearance_chapter": 0,
+      "last_seen_chapter": 0,
+      "last_event": "在拒絕說出真相後失去視覺與方向，對應第九階段。",
+      "return_condition": "只能以錯誤證詞、遮蔽的視線與被刪除的監視畫面出現。"
+    }
+  ]
+}

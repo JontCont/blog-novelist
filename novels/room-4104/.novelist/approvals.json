@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "artifacts": {
+    "constitution.md": {
+      "sha256": "77e85900ae6b555a32916c0fa225efe31a999b7271637ecc4be4978f0aa60eb8",
+      "approved_at": "2026-09-20T03:09:47.308284+00:00"
+    },
+    "spec.md": {
+      "sha256": "4283cfb857c9cf60dae6b0fd6a0ae9dd6b8ef46d51482910e747ae6c1522564f",
+      "approved_at": "2026-09-20T05:45:21.143097+00:00"
+    },
+    "characters.json": {
+      "sha256": "1aa9c1df445364ab7dd63f765cdf4e320bf5406a84063d1bb3a8ca052c34a99c",
+      "approved_at": "2026-09-20T05:45:24.867402+00:00"
+    },
+    "canon/world.md": {
+      "sha256": "c1e9930009f22007cc46ab7b6deea7d5e91f7c75f1cdb3f01d925aaf453483e3",
+      "approved_at": "2026-09-20T05:45:28.446501+00:00"
+    },
+    "canon/characters.md": {
+      "sha256": "a76163185079232e4c5664fce0d9286667f810429673da3c93bf28adec637b58",
+      "approved_at": "2026-09-20T05:45:31.533663+00:00"
+    },
+    "canon/timeline.md": {
+      "sha256": "e98ec7843058913d3cfdce7d5cc5369cdaa79e314df66fd44d00c6c873a87ef3",
+      "approved_at": "2026-09-20T05:45:34.320669+00:00"
+    },
+    "canon/setups.md": {
+      "sha256": "09b50c3002b49ae49dfbf571487a44e505c4a0812d379bbd5840eb82c27e5436",
+      "approved_at": "2026-09-20T05:45:40.825770+00:00"
+    },
+    "outline/outline.md": {
+      "sha256": "8492b93d43a2b1a5ceeb3c58a909852eb62d550a638dd627da792a29ec952dc0",
+      "approved_at": "2026-09-20T05:45:44.129533+00:00"
+    },
+    "chapters/tasks/01.md": {
+      "sha256": "827072e7f8706b3233426c815a686f1523abe6d6f9e95e6d88db726768ae98f6",
+      "approved_at": "2026-09-20T05:45:47.342315+00:00"
+    }
+  }
+}

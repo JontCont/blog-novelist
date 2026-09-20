@@ -1,3 +1,5 @@
+outline/outline.md
+
 # 賭徒 — Outline
 
 ## Constitution Check
