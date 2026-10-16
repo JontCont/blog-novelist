@@ -1,6 +1,5 @@
 {
-  "latest_accepted_chapter": 2,
-  "latest_summary": "煒通過德安大樓夜班警衛面試並開始第一天工作。前輩從十樓帶他逐層向下，讓他拍攝各層地圖，並警告不要靠近 4104 房間與電梯；四樓有正常住戶，4104 的公宅雛形與出租紀錄仍不明。回程時前輩往樓梯下行並消失，煒在四樓遭遇錯置的電梯紅光、模糊人影與從電梯衝出的黑影後，衝回地下一樓警衛室；前輩稍後帶著兩份便當與未讀訊息出現，拒絕解釋去向。煒回宿舍翻看樓層筆記與照片，夜裡聽見不存在的電梯提示音，錄音捕捉到「410……」與濕冷氣音。",
+  "latest_accepted_chapter": 23,
   "active_character_ids": [
     "wen"
   ],
@@ -25,6 +24,200 @@
       "character_returns": {
         "senior-guard": "完成第二章帶看與交接後離開大樓"
       }
+    },
+    {
+      "chapter": 3,
+      "title": "夜、壓力",
+      "summary": "第二夜煒在警衛室建立正常電梯提示音樣本，遇到無人操作卻停在四樓的電梯、沒有按鍵紀錄的錯誤指示，以及像管理員的聲音要求他確認四樓。煒以手機、收音設備、紙本時間與監視器交叉記錄，最後主動搭上電梯；樓層顯示跳過十樓並亮起不存在的 11，收音設備錄到不屬於他的呼吸。章末電梯門尚未開啟，煒仍不知道外面是什麼。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 4,
+      "title": "第三夜",
+      "summary": "煒在電梯外辨認四樓長走廊與整理痕跡，拒絕模仿管理員的指令；鏡面只映出影子與唯一打開的4101門。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 5,
+      "title": "4101套房",
+      "summary": "煒進入4101並遇見未知來電、舊鑰匙與鏡中門；他沒有拿鑰匙，穿過不存在的入口後失去退路。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 6,
+      "title": "無門之牆",
+      "summary": "煒沿鏡中門進入樓梯間，手掌受傷，聽見不同時期的求救與慘叫，選擇往下走。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 7,
+      "title": "下行",
+      "summary": "煒回到看似正常的警衛室，監視器與玻璃出口互相矛盾，停在大樓入口前。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 8,
+      "title": "玻璃另一側",
+      "summary": "玻璃折射出唯一一扇門與看不見臉的影子；門後傳出前人求救片段，影子引煒走向電梯。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 9,
+      "title": "門牌剩下的數字",
+      "summary": "電梯門後的房間重演不明人物的求救片段，煒取得十月每月整理紀錄，房間開始模仿他的聲音。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 10,
+      "title": "沒有樓層的電梯",
+      "summary": "煒用正常樓層照片尋路，電梯反覆開向錯置空間；他回到警衛室，值班簿卻寫著他已離開，監視器仍拍到另一個煒。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 11,
+      "title": "值班簿上的名字",
+      "summary": "煒發現不同年代的值班簿反覆出現「已離開大樓」與02:16，沿第一天的平面圖走到入口，但玻璃影子仍指向大樓內。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 12,
+      "title": "雨裡的影子",
+      "summary": "雨水折射出老舊入口和唯一一扇門，門後保存不同時期的求救聲。煒放棄看似真實的街景，走進有十個空牌與第十一個孔的電梯。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 13,
+      "title": "補繳",
+      "summary": "電梯重現煒遭詐騙、補保證金與失去積蓄的經歷。煒識破「只差最後一步」的催促，拒絕確認不存在的十一樓。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 14,
+      "title": "床沿的通知",
+      "summary": "宿舍重現煒失業、履歷無回音和租約將到期的窘迫；他拒絕房間的保證與催促，回到異常電梯。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 15,
+      "title": "下一班",
+      "summary": "02:16時電梯打開，露出只有一條走廊的四樓異常空間，盡頭門牌顯示4104。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 16,
+      "title": "門裡",
+      "summary": "煒進入4104，看見十處不同年代、被整理過的痕跡；第一組痕跡開始重現密閉與偽信仰標記。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 17,
+      "title": "看不見的臉",
+      "summary": "鏡面抹去面容、錄音失去求救聲，煒記錄前三處痕跡，房間的影子都轉向他。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 18,
+      "title": "鬧鐘",
+      "summary": "封閉睡眠、家族遺物與倒放影像依序出現；煒承認自己看見的證據，房間分隔成無出口的隔間。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 19,
+      "title": "不屬於他的東西",
+      "summary": "煒面對封閉隔間、誘人的舊物和否認影像，拒絕取用物件並找到管理員留下的「先熄燈、真正的門在外面」警告。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 20,
+      "title": "整理的人",
+      "summary": "整理紀錄和不完整電話聲音指向管理方掩蓋十起死亡、前任管理員是第十名祭品；煒找到四樓電源箱路線。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 21,
+      "title": "熄燈",
+      "summary": "煒切斷四樓電源，暫停高溫與異常，沿樓梯抵達地下一樓；他知道停電並不代表逃離。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 22,
+      "title": "照片上的路",
+      "summary": "煒以第一天拍攝的樓層照片和現場痕跡穿過四樓，拒絕惡魔的電梯捷徑，回到入口走廊。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
+    },
+    {
+      "chapter": 23,
+      "title": "大樓外",
+      "summary": "煒推開入口門走進雨中；街道與身體感受支持他已到外界，手機影像卻仍把他留在門內，結局保留逃脫與受困兩種解讀。",
+      "present_character_ids": [
+        "wen"
+      ],
+      "character_returns": {}
     }
-  ]
+  ],
+  "latest_draft_chapter": 23,
+  "draft_status": "published",
+  "ending_type": "open_ended",
+  "latest_summary": "第二十三章〈大樓外〉：煒推開入口門走進雨中；街道與身體感受支持他已到外界，手機影像卻仍把他留在門內，結局保留逃脫與受困兩種解讀。",
+  "published_at": "2026-10-16"
 }

@@ -20,19 +20,134 @@
       "slug": "room-4104",
       "title": "4104套房",
       "genre": "心理超自然恐怖",
-      "publishedAt": "2026-09-20",
+      "publishedAt": "2026-10-16",
       "cover": "https://images.unsplash.com/photo-1786970656287-235ba183282d?auto=format&fit=crop&w=720&q=85",
-      "description": "夜班警衛煒在十層老大樓裡遇見消失的前輩、錯位的電梯，以及一間所有人都說不要靠近的 4104。",
+      "description": "夜班警衛煒被困在德安大樓錯位的電梯與四樓走廊中，必須從每月整理留下的痕跡找出離開的方法。",
       "chapters": [
         {
-          "number": 1,
+          "number": "1",
           "title": "新工作",
           "source": "../novels/room-4104/chapters/drafts/01.md"
         },
         {
-          "number": 2,
+          "number": "2",
           "title": "迷失",
           "source": "../novels/room-4104/chapters/drafts/02.md"
+        },
+        {
+          "number": "3",
+          "title": "夜、壓力",
+          "source": "../novels/room-4104/chapters/drafts/03.md"
+        },
+        {
+          "number": "4",
+          "title": "第三夜",
+          "source": "../novels/room-4104/chapters/drafts/04.md"
+        },
+        {
+          "number": "5",
+          "title": "4101 套房",
+          "source": "../novels/room-4104/chapters/drafts/05.md"
+        },
+        {
+          "number": "5-1",
+          "title": "鑰匙",
+          "source": "../novels/room-4104/chapters/drafts/05-1.md"
+        },
+        {
+          "number": "5-2",
+          "title": "門後",
+          "source": "../novels/room-4104/chapters/drafts/05-2.md"
+        },
+        {
+          "number": "6",
+          "title": "無門之牆",
+          "source": "../novels/room-4104/chapters/drafts/06.md"
+        },
+        {
+          "number": "7",
+          "title": "下行",
+          "source": "../novels/room-4104/chapters/drafts/07.md"
+        },
+        {
+          "number": "8",
+          "title": "玻璃另一側",
+          "source": "../novels/room-4104/chapters/drafts/08.md"
+        },
+        {
+          "number": "9",
+          "title": "門牌剩下的數字",
+          "source": "../novels/room-4104/chapters/drafts/09.md"
+        },
+        {
+          "number": "10",
+          "title": "沒有樓層的電梯",
+          "source": "../novels/room-4104/chapters/drafts/10.md"
+        },
+        {
+          "number": "11",
+          "title": "值班簿上的名字",
+          "source": "../novels/room-4104/chapters/drafts/11.md"
+        },
+        {
+          "number": "12",
+          "title": "雨裡的影子",
+          "source": "../novels/room-4104/chapters/drafts/12.md"
+        },
+        {
+          "number": "13",
+          "title": "補繳",
+          "source": "../novels/room-4104/chapters/drafts/13.md"
+        },
+        {
+          "number": "14",
+          "title": "床沿的通知",
+          "source": "../novels/room-4104/chapters/drafts/14.md"
+        },
+        {
+          "number": "15",
+          "title": "下一班",
+          "source": "../novels/room-4104/chapters/drafts/15.md"
+        },
+        {
+          "number": "16",
+          "title": "門裡",
+          "source": "../novels/room-4104/chapters/drafts/16.md"
+        },
+        {
+          "number": "17",
+          "title": "看不見的臉",
+          "source": "../novels/room-4104/chapters/drafts/17.md"
+        },
+        {
+          "number": "18",
+          "title": "鬧鐘",
+          "source": "../novels/room-4104/chapters/drafts/18.md"
+        },
+        {
+          "number": "19",
+          "title": "不屬於他的東西",
+          "source": "../novels/room-4104/chapters/drafts/19.md"
+        },
+        {
+          "number": "20",
+          "title": "整理的人",
+          "source": "../novels/room-4104/chapters/drafts/20.md"
+        },
+        {
+          "number": "21",
+          "title": "熄燈",
+          "source": "../novels/room-4104/chapters/drafts/21.md"
+        },
+        {
+          "number": "22",
+          "title": "照片上的路",
+          "source": "../novels/room-4104/chapters/drafts/22.md"
+        },
+        {
+          "number": "23",
+          "title": "大樓外",
+          "source": "../novels/room-4104/chapters/drafts/23.md"
         }
       ]
     }

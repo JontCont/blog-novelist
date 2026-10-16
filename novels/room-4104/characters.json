@@ -9,10 +9,10 @@
       "role": "protagonist",
       "personality": "被詐騙與長期失業使他自我否定、敏感而孤立，但擅長注意環境細節，受逼迫時仍會尋找可驗證的出口。",
       "status": "active",
-      "current_location": "宿舍",
+      "current_location": "大樓入口外側，是否真正逃離未定",
       "first_appearance_chapter": 1,
-      "last_seen_chapter": 2,
-      "last_event": "煒通過德安大樓夜班警衛面試並開始第一天工作；煒回到宿舍後仍無法解釋前輩在下行途中短暫消失的原因。",
+      "last_seen_chapter": 23,
+      "last_event": "煒推開大樓入口走進雨中；街道與身體感受支持他已到外界，手機影像卻仍把他留在門內，結局保留逃脫與受困兩種解讀。",
       "return_condition": "若從四樓逃出，必須以新的事件記錄確認其狀態；不可直接假定他已安全。"
     },
     {
