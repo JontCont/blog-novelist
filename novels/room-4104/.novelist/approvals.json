@@ -10,8 +10,8 @@
       "approved_at": "2026-09-20T08:23:41.933526+00:00"
     },
     "characters.json": {
-      "sha256": "63d69c750975173bd9fea98be67ef48990005fa36667f537987a3dcf60769f4a",
-      "approved_at": "2026-09-20T08:23:46.084774+00:00"
+      "sha256": "1468d8baa66c6e3a7be8fcc778cb114f20c44ad41e4ce26a9948fd889a73074a",
+      "approved_at": "2026-09-23T05:53:04.758736+00:00"
     },
     "canon/world.md": {
       "sha256": "91fd4dd2d7335100e40bcf0175dc25aaba20a3c1ef83f2114db05726010bf4b0",
@@ -26,16 +26,16 @@
       "approved_at": "2026-09-20T08:23:57.851945+00:00"
     },
     "canon/setups.md": {
-      "sha256": "9e2c670356b0070c95a51b2af8d1e0fb59545c6edd7a3f41b59d0e2153816370",
-      "approved_at": "2026-09-20T08:24:01.358830+00:00"
+      "sha256": "b82d32ac886ae2c157105c899ae7b962a38c13b85411505235e7b28236723505",
+      "approved_at": "2026-09-23T05:53:09.480255+00:00"
     },
     "outline/outline.md": {
       "sha256": "459cdf928d9b44770943c139f7c6df78e6b9f4cfd4456854e6e15af9df87d861",
-      "approved_at": "2026-09-20T08:24:05.474807+00:00"
+      "approved_at": "2026-09-23T05:53:14.900457+00:00"
     },
-    "chapters/tasks/02.md": {
-      "sha256": "8b00f970824e73c3bdfc5f7df4520b54362587aca76f8b7b62a63689c0e8783d",
-      "approved_at": "2026-09-20T08:24:08.774961+00:00"
+    "chapters/tasks/03.md": {
+      "sha256": "da451b2d81bc33c9b6c0f4b37e47dc4f68608b986359bd629d79ca13b546440f",
+      "approved_at": "2026-09-23T05:55:31.436344+00:00"
     }
   }
 }
