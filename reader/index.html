@@ -221,6 +221,19 @@
         color: var(--reader-muted);
       }
 
+      .novel-panel .chapter-list li:first-child { border-top: 1px solid var(--reader-rule); }
+
+      .novel-panel .chapter-list a {
+        display: block;
+        min-height: 56px;
+        padding: 14px 0;
+        color: var(--reader-ink);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .novel-panel .chapter-list a:hover { color: var(--reader-accent); }
+
       .filter-tags {
         display: flex;
         flex-wrap: wrap;
@@ -442,14 +455,10 @@
             <button id="novel-tab-about" class="novel-tab" type="button" role="tab" aria-selected="true" aria-controls="novel-panel" data-novel-tab="about">關於</button>
             <button id="novel-tab-characters" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="characters" tabindex="-1">人物介紹</button>
             <button id="novel-tab-timeline" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="timeline" tabindex="-1">故事時間軸</button>
+            <button id="novel-tab-chapters" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="chapters" tabindex="-1">章節</button>
           </div>
           <div id="novel-panel" class="novel-panel" role="tabpanel" tabindex="0" aria-labelledby="novel-tab-about"></div>
         </section>
-
-        <nav class="reader-menu" aria-label="章節目錄">
-          <h2>章節</h2>
-          <ol id="chapter-list" class="chapter-list"></ol>
-        </nav>
       </section>
 
       <section id="chapter-view" class="reader-view" hidden>
@@ -471,7 +480,6 @@
         const novelList = document.getElementById('novel-list');
         const genreFilters = document.getElementById('genre-filters');
         const novelTitle = document.getElementById('novel-title');
-        const chapterList = document.getElementById('chapter-list');
         const chapterNovel = document.getElementById('chapter-novel');
         const chapterTitle = document.getElementById('chapter-title');
         const novelDetails = document.getElementById('novel-details');
@@ -537,15 +545,6 @@
           novelTitle.textContent = novel.title;
           novelDescription.textContent = novel.description;
           renderNovelDetails(novel);
-          chapterList.replaceChildren();
-          novel.chapters.forEach(function (chapter) {
-            const item = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = '#' + novel.slug + '/' + chapter.number;
-            link.textContent = '第 ' + chapter.number + ' 章：' + chapter.title;
-            item.appendChild(link);
-            chapterList.appendChild(item);
-          });
           showView(novelView);
         }
 
@@ -566,6 +565,24 @@
           novelPanel.replaceChildren();
           const novel = novelsBySlug.get(decodeURIComponent(location.hash.slice(1)).split('/')[0]);
           const details = novel && novel.details ? novel.details : {};
+
+          if (tabName === 'chapters') {
+            const heading = document.createElement('h2');
+            heading.textContent = '章節目錄';
+            novelPanel.appendChild(heading);
+            const list = document.createElement('ol');
+            list.className = 'chapter-list';
+            novel.chapters.forEach(function (chapter) {
+              const item = document.createElement('li');
+              const link = document.createElement('a');
+              link.href = '#' + novel.slug + '/' + chapter.number;
+              link.textContent = '第 ' + chapter.number + ' 章：' + chapter.title;
+              item.appendChild(link);
+              list.appendChild(item);
+            });
+            novelPanel.appendChild(list);
+            return;
+          }
 
           if (tabName === 'about') {
             const heading = document.createElement('h2');
