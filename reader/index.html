@@ -415,6 +415,33 @@
         margin: 0 auto 1.5em;
       }
 
+      .chapter-navigation {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 48px;
+        padding-top: 16px;
+        border-top: 1px solid var(--reader-rule);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      }
+
+      .chapter-navigation a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        color: var(--reader-accent);
+        font-weight: 700;
+        line-height: 1.5;
+        text-decoration: none;
+      }
+
+      .chapter-navigation a:last-child { margin-left: auto; text-align: right; }
+      .chapter-navigation a:hover { text-decoration: underline; }
+      .chapter-navigation a:focus-visible {
+        outline: 2px solid var(--reader-accent);
+        outline-offset: 3px;
+      }
+
       @media (max-width: 600px) {
         .reader-shell { padding-top: 30px; }
 
@@ -475,6 +502,10 @@
         </header>
 
         <article id="chapter-content" class="chapter-content" aria-live="polite"></article>
+        <nav id="chapter-navigation" class="chapter-navigation" aria-label="章節導覽">
+          <a id="previous-chapter" href="#" hidden></a>
+          <a id="next-chapter" href="#" hidden></a>
+        </nav>
       </section>
     </main>
 
@@ -492,6 +523,8 @@
         const novelPanel = document.getElementById('novel-panel');
         const novelTabs = Array.from(document.querySelectorAll('[data-novel-tab]'));
         const chapterBack = document.getElementById('chapter-back');
+        const previousChapter = document.getElementById('previous-chapter');
+        const nextChapter = document.getElementById('next-chapter');
         const libraryView = document.getElementById('library-view');
         const novelView = document.getElementById('novel-view');
         const chapterView = document.getElementById('chapter-view');
@@ -693,6 +726,20 @@
           chapterNovel.textContent = entry.novel.title;
           chapterTitle.textContent = '第 ' + entry.chapter.number + ' 章：' + entry.chapter.title;
           chapterBack.href = '#' + entry.novel.slug;
+          const chapters = entry.novel.chapters;
+          const chapterIndex = chapters.indexOf(entry.chapter);
+          const previous = chapters[chapterIndex - 1];
+          const next = chapters[chapterIndex + 1];
+          previousChapter.hidden = !previous;
+          nextChapter.hidden = !next;
+          if (previous) {
+            previousChapter.href = '#' + entry.novel.slug + '/' + previous.number;
+            previousChapter.textContent = '← 上一章｜' + previous.title;
+          }
+          if (next) {
+            nextChapter.href = '#' + entry.novel.slug + '/' + next.number;
+            nextChapter.textContent = '下一章｜' + next.title + ' →';
+          }
           chapterContent.textContent = '載入中...';
           showView(chapterView);
           const response = await fetch(entry.chapter.source);
