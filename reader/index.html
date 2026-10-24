@@ -489,6 +489,7 @@
           <div class="novel-tabs" role="tablist" aria-label="作品資料分類">
             <button id="novel-tab-about" class="novel-tab" type="button" role="tab" aria-selected="true" aria-controls="novel-panel" data-novel-tab="about">關於</button>
             <button id="novel-tab-characters" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="characters" tabindex="-1">人物介紹</button>
+            <button id="novel-tab-timeline" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="timeline" tabindex="-1">故事時間軸</button>
             <button id="novel-tab-chapters" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="chapters" tabindex="-1">章節</button>
           </div>
           <div id="novel-panel" class="novel-panel" role="tabpanel" tabindex="0" aria-labelledby="novel-tab-about"></div>
@@ -633,6 +634,44 @@
             copy.className = 'novel-about';
             copy.textContent = details.about || novel.description;
             novelPanel.append(heading, copy);
+            return;
+          }
+
+          if (tabName === 'timeline') {
+            const heading = document.createElement('h2');
+            heading.textContent = '故事時間軸';
+            novelPanel.appendChild(heading);
+            if (!details.timeline || details.timeline.length === 0) {
+              const empty = document.createElement('p');
+              empty.className = 'novel-empty';
+              empty.textContent = '章節時間軸尚未整理。';
+              novelPanel.appendChild(empty);
+              return;
+            }
+            const hint = document.createElement('p');
+            hint.className = 'chapter-timeline__hint';
+            hint.textContent = '依故事順序排列；事件摘要可能透露後續章節。選擇章節可直接閱讀。';
+            novelPanel.appendChild(hint);
+            const timeline = document.createElement('ol');
+            timeline.className = 'story-timeline';
+            details.timeline.forEach(function (event) {
+              const chapter = novel.chapters.find(function (entry) { return String(entry.number) === String(event.chapter); });
+              if (!chapter) return;
+              const item = document.createElement('li');
+              const link = document.createElement('a');
+              const period = document.createElement('span');
+              const summary = document.createElement('p');
+              link.className = 'timeline-link';
+              link.href = '#' + novel.slug + '/' + chapter.number;
+              link.textContent = '第 ' + chapter.number + ' 章：' + chapter.title;
+              period.className = 'timeline-period';
+              period.textContent = event.period;
+              summary.className = 'timeline-event';
+              summary.textContent = event.event;
+              item.append(link, period, summary);
+              timeline.appendChild(item);
+            });
+            novelPanel.appendChild(timeline);
             return;
           }
 
