@@ -478,7 +478,7 @@
       <section id="novel-view" class="reader-view" hidden>
         <a class="reader-back" href="#">返回小說庫</a>
         <header class="reader-header">
-          <p class="reader-eyebrow">作品</p>
+          <p id="novel-type" class="reader-eyebrow">作品</p>
           <h1 id="novel-title"></h1>
           <p id="novel-description"></p>
         </header>
@@ -517,6 +517,7 @@
         const novelList = document.getElementById('novel-list');
         const genreFilters = document.getElementById('genre-filters');
         const novelTitle = document.getElementById('novel-title');
+        const novelType = document.getElementById('novel-type');
         const chapterNovel = document.getElementById('chapter-novel');
         const chapterTitle = document.getElementById('chapter-title');
         const novelDetails = document.getElementById('novel-details');
@@ -582,6 +583,7 @@
 
         function renderNovel(novel) {
           novelTitle.textContent = novel.title;
+          novelType.textContent = novel.format === 'short-story' ? '短篇小說｜Short Story' : '作品';
           novelDescription.textContent = novel.description;
           renderNovelDetails(novel);
           showView(novelView);

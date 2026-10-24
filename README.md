@@ -36,6 +36,8 @@ novels/<slug>/chapters/
 
 作品資料可用 `details` 填寫介紹、人物和章節時間軸：
 
+若需標示短篇小說，可在作品資料加入 `"format": "short-story"`，作品頁會顯示「短篇小說｜Short Story」。短篇小說每章正文建議維持 1,000 至 7,500 字。
+
 ```json
 {
   "details": {

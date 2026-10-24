@@ -240,6 +240,7 @@
       "slug": "midnight-knock",
       "title": "午夜的第三聲敲門",
       "genre": "恐怖靈異",
+      "format": "short-story",
       "publishedAt": "2026-10-24",
       "cover": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=720&q=85",
       "description": "搬進新公寓的陳雨，連續聽見深夜敲門聲。她與母親追查消失的 03 號房，逐步揭開一段被遺忘的等待。",
@@ -366,7 +367,8 @@
     {
       "slug": "hero-off-duty",
       "title": "勇者今天也想下班",
-      "genre": "異世界搞笑",
+      "genre": "異世界無俚頭",
+      "format": "short-story",
       "publishedAt": "2026-10-24",
       "cover": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=720&q=85",
       "description": "只想準時下班的勇者林小滿，帶著精靈法師和史萊姆一路解決魔物與公會的麻煩，最後學會把冒險交給下一個人。",
