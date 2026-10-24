@@ -234,39 +234,10 @@
 
       .novel-panel .chapter-list a:hover { color: var(--reader-accent); }
 
-      .chapter-timeline {
-        margin: 24px 0 0;
-        border-top: 1px solid var(--reader-rule);
-        border-bottom: 1px solid var(--reader-rule);
-        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      }
-
-      .chapter-timeline > summary {
-        min-height: 48px;
-        padding: 12px 0;
-        color: var(--reader-accent);
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .chapter-timeline__hint {
+      .timeline-hint {
         margin: 0 0 16px;
         color: var(--reader-muted);
         font-size: 0.86rem;
-      }
-
-      .story-timeline__current {
-        color: var(--reader-accent);
-        font-weight: 700;
-      }
-
-      .story-timeline__current-label {
-        display: inline-block;
-        margin-left: 8px;
-        padding: 1px 7px;
-        border: 1px solid var(--reader-accent);
-        border-radius: 999px;
-        font-size: 0.76rem;
       }
 
       .filter-tags {
@@ -503,12 +474,6 @@
           <h1 id="chapter-title"></h1>
         </header>
 
-        <details id="chapter-timeline" class="chapter-timeline" hidden>
-          <summary>故事時間軸</summary>
-          <p class="chapter-timeline__hint">依故事順序排列；事件摘要可能透露後續章節。</p>
-          <ol id="chapter-timeline-list" class="story-timeline"></ol>
-        </details>
-
         <article id="chapter-content" class="chapter-content" aria-live="polite"></article>
       </section>
     </main>
@@ -523,8 +488,6 @@
         const novelTitle = document.getElementById('novel-title');
         const chapterNovel = document.getElementById('chapter-novel');
         const chapterTitle = document.getElementById('chapter-title');
-        const chapterTimeline = document.getElementById('chapter-timeline');
-        const chapterTimelineList = document.getElementById('chapter-timeline-list');
         const novelDetails = document.getElementById('novel-details');
         const novelPanel = document.getElementById('novel-panel');
         const novelTabs = Array.from(document.querySelectorAll('[data-novel-tab]'));
@@ -649,7 +612,7 @@
               return;
             }
             const hint = document.createElement('p');
-            hint.className = 'chapter-timeline__hint';
+            hint.className = 'timeline-hint';
             hint.textContent = '依故事順序排列；事件摘要可能透露後續章節。選擇章節可直接閱讀。';
             novelPanel.appendChild(hint);
             const timeline = document.createElement('ol');
@@ -709,41 +672,6 @@
 
         }
 
-        function renderChapterTimeline(novel, currentChapter) {
-          const entries = novel.details && Array.isArray(novel.details.timeline) ? novel.details.timeline : [];
-          chapterTimelineList.replaceChildren();
-          chapterTimeline.open = false;
-          chapterTimeline.hidden = entries.length === 0;
-          if (entries.length === 0) return;
-
-          entries.forEach(function (event) {
-            const chapter = novel.chapters.find(function (entry) { return String(entry.number) === String(event.chapter); });
-            if (!chapter) return;
-            const item = document.createElement('li');
-            const current = String(chapter.number) === String(currentChapter.number);
-            const title = document.createElement(current ? 'span' : 'a');
-            const period = document.createElement('span');
-            const summary = document.createElement('p');
-            title.textContent = '第 ' + chapter.number + ' 章：' + chapter.title;
-            title.className = current ? 'story-timeline__current' : 'timeline-link';
-            if (current) {
-              title.setAttribute('aria-current', 'step');
-              const label = document.createElement('span');
-              label.className = 'story-timeline__current-label';
-              label.textContent = '正在閱讀';
-              title.appendChild(label);
-            } else {
-              title.href = '#' + novel.slug + '/' + chapter.number;
-            }
-            period.className = 'timeline-period';
-            period.textContent = event.period;
-            summary.className = 'timeline-event';
-            summary.textContent = event.event;
-            item.append(title, period, summary);
-            chapterTimelineList.appendChild(item);
-          });
-        }
-
         novelTabs.forEach(function (tab, index) {
           tab.addEventListener('click', function () {
             selectNovelTab(tab.dataset.novelTab);
@@ -765,7 +693,6 @@
           chapterNovel.textContent = entry.novel.title;
           chapterTitle.textContent = '第 ' + entry.chapter.number + ' 章：' + entry.chapter.title;
           chapterBack.href = '#' + entry.novel.slug;
-          renderChapterTimeline(entry.novel, entry.chapter);
           chapterContent.textContent = '載入中...';
           showView(chapterView);
           const response = await fetch(entry.chapter.source);
