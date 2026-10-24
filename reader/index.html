@@ -234,6 +234,41 @@
 
       .novel-panel .chapter-list a:hover { color: var(--reader-accent); }
 
+      .chapter-timeline {
+        margin: 24px 0 0;
+        border-top: 1px solid var(--reader-rule);
+        border-bottom: 1px solid var(--reader-rule);
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      }
+
+      .chapter-timeline > summary {
+        min-height: 48px;
+        padding: 12px 0;
+        color: var(--reader-accent);
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .chapter-timeline__hint {
+        margin: 0 0 16px;
+        color: var(--reader-muted);
+        font-size: 0.86rem;
+      }
+
+      .story-timeline__current {
+        color: var(--reader-accent);
+        font-weight: 700;
+      }
+
+      .story-timeline__current-label {
+        display: inline-block;
+        margin-left: 8px;
+        padding: 1px 7px;
+        border: 1px solid var(--reader-accent);
+        border-radius: 999px;
+        font-size: 0.76rem;
+      }
+
       .filter-tags {
         display: flex;
         flex-wrap: wrap;
@@ -454,7 +489,6 @@
           <div class="novel-tabs" role="tablist" aria-label="作品資料分類">
             <button id="novel-tab-about" class="novel-tab" type="button" role="tab" aria-selected="true" aria-controls="novel-panel" data-novel-tab="about">關於</button>
             <button id="novel-tab-characters" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="characters" tabindex="-1">人物介紹</button>
-            <button id="novel-tab-timeline" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="timeline" tabindex="-1">故事時間軸</button>
             <button id="novel-tab-chapters" class="novel-tab" type="button" role="tab" aria-selected="false" aria-controls="novel-panel" data-novel-tab="chapters" tabindex="-1">章節</button>
           </div>
           <div id="novel-panel" class="novel-panel" role="tabpanel" tabindex="0" aria-labelledby="novel-tab-about"></div>
@@ -467,6 +501,12 @@
           <p id="chapter-novel" class="reader-eyebrow"></p>
           <h1 id="chapter-title"></h1>
         </header>
+
+        <details id="chapter-timeline" class="chapter-timeline" hidden>
+          <summary>故事時間軸</summary>
+          <p class="chapter-timeline__hint">依故事順序排列；事件摘要可能透露後續章節。</p>
+          <ol id="chapter-timeline-list" class="story-timeline"></ol>
+        </details>
 
         <article id="chapter-content" class="chapter-content" aria-live="polite"></article>
       </section>
@@ -482,6 +522,8 @@
         const novelTitle = document.getElementById('novel-title');
         const chapterNovel = document.getElementById('chapter-novel');
         const chapterTitle = document.getElementById('chapter-title');
+        const chapterTimeline = document.getElementById('chapter-timeline');
+        const chapterTimelineList = document.getElementById('chapter-timeline-list');
         const novelDetails = document.getElementById('novel-details');
         const novelPanel = document.getElementById('novel-panel');
         const novelTabs = Array.from(document.querySelectorAll('[data-novel-tab]'));
@@ -626,35 +668,41 @@
             return;
           }
 
-          const heading = document.createElement('h2');
-          heading.textContent = '故事時間軸';
-          novelPanel.appendChild(heading);
-          if (!details.timeline || details.timeline.length === 0) {
-            const empty = document.createElement('p');
-            empty.className = 'novel-empty';
-            empty.textContent = '章節時間軸尚未整理。';
-            novelPanel.appendChild(empty);
-            return;
-          }
-          const timeline = document.createElement('ol');
-          timeline.className = 'story-timeline';
-          details.timeline.forEach(function (event) {
+        }
+
+        function renderChapterTimeline(novel, currentChapter) {
+          const entries = novel.details && Array.isArray(novel.details.timeline) ? novel.details.timeline : [];
+          chapterTimelineList.replaceChildren();
+          chapterTimeline.open = false;
+          chapterTimeline.hidden = entries.length === 0;
+          if (entries.length === 0) return;
+
+          entries.forEach(function (event) {
+            const chapter = novel.chapters.find(function (entry) { return String(entry.number) === String(event.chapter); });
+            if (!chapter) return;
             const item = document.createElement('li');
-            const link = document.createElement('a');
+            const current = String(chapter.number) === String(currentChapter.number);
+            const title = document.createElement(current ? 'span' : 'a');
             const period = document.createElement('span');
             const summary = document.createElement('p');
-            const chapter = novel.chapters.find(function (entry) { return String(entry.number) === String(event.chapter); });
-            link.className = 'timeline-link';
-            link.href = '#' + novel.slug + '/' + event.chapter;
-            link.textContent = chapter ? '第 ' + chapter.number + ' 章：' + chapter.title : '第 ' + event.chapter + ' 章';
+            title.textContent = '第 ' + chapter.number + ' 章：' + chapter.title;
+            title.className = current ? 'story-timeline__current' : 'timeline-link';
+            if (current) {
+              title.setAttribute('aria-current', 'step');
+              const label = document.createElement('span');
+              label.className = 'story-timeline__current-label';
+              label.textContent = '正在閱讀';
+              title.appendChild(label);
+            } else {
+              title.href = '#' + novel.slug + '/' + chapter.number;
+            }
             period.className = 'timeline-period';
             period.textContent = event.period;
             summary.className = 'timeline-event';
             summary.textContent = event.event;
-            item.append(link, period, summary);
-            timeline.appendChild(item);
+            item.append(title, period, summary);
+            chapterTimelineList.appendChild(item);
           });
-          novelPanel.appendChild(timeline);
         }
 
         novelTabs.forEach(function (tab, index) {
@@ -678,6 +726,7 @@
           chapterNovel.textContent = entry.novel.title;
           chapterTitle.textContent = '第 ' + entry.chapter.number + ' 章：' + entry.chapter.title;
           chapterBack.href = '#' + entry.novel.slug;
+          renderChapterTimeline(entry.novel, entry.chapter);
           chapterContent.textContent = '載入中...';
           showView(chapterView);
           const response = await fetch(entry.chapter.source);
