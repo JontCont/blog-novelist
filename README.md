@@ -76,3 +76,5 @@ py -m http.server 8000
 ## 留言板
 
 留言透過本 repository 的 GitHub Discussions 與 Giscus App 管理，討論串會在首次留言或反應時建立。作品以 `novel:<slug>`、章節以 `chapter:<slug>:<章節編號>` 對應各自的討論；修改作品 slug 或章節編號會影響對應。登入後閱讀器會盡量恢復原本的作品或章節頁面。
+
+獨立開啟閱讀器時，留言板顯示在閱讀器內。嵌入部落格時，由部落格頁面顯示同一個留言板，避免 Giscus 的安全政策阻擋跨網域巢狀 iframe；閱讀器也提供另開小說站的連結。

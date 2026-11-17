@@ -466,6 +466,21 @@
         font-size: 1.25rem;
       }
 
+      .reader-comments__link,
+      .reader-comments__jump {
+        color: var(--reader-accent);
+        font: inherit;
+      }
+
+      .reader-comments__jump {
+        margin-right: 1rem;
+        padding: 0;
+        border: 0;
+        background: none;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
       @media (max-width: 600px) {
         .reader-shell { padding-top: 30px; }
 
@@ -537,12 +552,17 @@
       </section>
 
       <section id="reader-comments" class="reader-comments" aria-labelledby="reader-comments-title" hidden>
-        <h2 id="reader-comments-title">留言</h2>
-        <p id="reader-comments-error" role="status" hidden></p>
+        <h2 id="reader-comments-title" data-comments-title>留言</h2>
+        <p id="reader-comments-error" data-comments-error role="status" hidden></p>
+        <p id="reader-comments-embedded" hidden>
+          <button id="reader-comments-jump" class="reader-comments__jump" type="button" hidden>前往部落格留言區</button>
+          <a id="reader-comments-link" class="reader-comments__link" target="_blank" rel="noopener">另開小說站留言</a>
+        </p>
         <div class="giscus"></div>
       </section>
     </main>
 
+    <script src="comments.js"></script>
     <script>
       (async function () {
         const chapterContent = document.getElementById('chapter-content');
@@ -566,17 +586,45 @@
         const comments = document.getElementById('reader-comments');
         const commentsTitle = document.getElementById('reader-comments-title');
         const commentsError = document.getElementById('reader-comments-error');
-        const commentsContainer = comments.querySelector('.giscus');
-        const commentsBacklink = document.querySelector('meta[name="giscus:backlink"]');
+        const embeddedComments = document.getElementById('reader-comments-embedded');
+        const commentsLink = document.getElementById('reader-comments-link');
+        const commentsJump = document.getElementById('reader-comments-jump');
         const novelsBySlug = new Map();
         const chaptersById = new Map();
         const newWindowMs = 7 * 24 * 60 * 60 * 1000;
         const returnHashKey = 'novelist-giscus-return-hash';
         const isGiscusReturn = new URL(location.href).searchParams.has('giscus');
-        let commentsConfig;
-        let commentsScript;
-        let commentsFrameReady = false;
+        const isEmbedded = window.parent !== window;
+        let parentOrigin;
+        let currentComments;
         let activeGenre = '全部';
+
+        const commentsManager = typeof window.createNovelComments === 'function'
+          ? window.createNovelComments(comments, function () {
+            if (isGiscusReturn && !location.hash && currentComments) {
+              const backlink = new URL(currentComments.backLink);
+              history.replaceState(history.state, '', location.pathname + location.search + backlink.hash);
+            }
+          })
+          : null;
+
+        function notifyParent() {
+          if (parentOrigin) {
+            window.parent.postMessage({ type: 'novelist:route', comments: currentComments }, parentOrigin);
+          }
+        }
+
+        window.addEventListener('message', function (event) {
+          if (!isEmbedded || event.source !== window.parent || !document.referrer) return;
+          if (event.origin !== new URL(document.referrer).origin) return;
+          if (!event.data || event.data.type !== 'novelist:connect') return;
+          parentOrigin = event.origin;
+          commentsJump.hidden = false;
+          notifyParent();
+        });
+        commentsJump.addEventListener('click', function () {
+          if (parentOrigin) window.parent.postMessage({ type: 'novelist:show-comments' }, parentOrigin);
+        });
 
         if (isGiscusReturn && !location.hash) {
           try {
@@ -631,76 +679,37 @@
           chapterView.hidden = view !== chapterView;
         }
 
-        function updateComments() {
-          const frame = commentsContainer.querySelector('iframe');
-          if (frame && frame.contentWindow && commentsConfig && commentsFrameReady) {
-            frame.contentWindow.postMessage({ giscus: { setConfig: commentsConfig } }, 'https://giscus.app');
-          }
-        }
-
-        new MutationObserver(function () {
-          const frame = commentsContainer.querySelector('iframe');
-          if (frame) {
-            commentsFrameReady = false;
-            frame.addEventListener('load', function () {
-              commentsFrameReady = true;
-              updateComments();
-            });
-          }
-        }).observe(commentsContainer, { childList: true });
-
         function showComments(term, title) {
           const backlink = new URL(location.href);
           backlink.searchParams.delete('giscus');
-          commentsConfig = { term: term, backLink: backlink.href };
+          currentComments = { term: term, title: title, backLink: backlink.href, hash: location.hash };
           commentsTitle.textContent = title;
-          commentsBacklink.content = backlink.href;
           comments.hidden = false;
+          if (isEmbedded) {
+            embeddedComments.hidden = false;
+            commentsLink.href = backlink.href;
+            notifyParent();
+            return;
+          }
+
           try {
             sessionStorage.setItem(returnHashKey, location.hash);
           } catch (error) {
             console.error('無法保存留言登入前的頁面。', error);
           }
 
-          if (commentsScript) {
-            updateComments();
-            return;
-          }
-
-          commentsScript = document.createElement('script');
-          commentsScript.src = 'https://giscus.app/client.js';
-          Object.assign(commentsScript.dataset, {
-            repo: 'JontCont/blog-novelist',
-            repoId: 'R_kgDOUPbfNg',
-            category: 'Announcements',
-            categoryId: 'DIC_kwDOUPbfNs4DLUFN',
-            mapping: 'specific',
-            term: term,
-            strict: '1',
-            reactionsEnabled: '1',
-            emitMetadata: '0',
-            inputPosition: 'bottom',
-            theme: 'preferred_color_scheme',
-            lang: 'zh-TW',
-            loading: 'lazy'
-          });
-          commentsScript.crossOrigin = 'anonymous';
-          commentsScript.async = true;
-          commentsScript.addEventListener('load', function () {
-            if (isGiscusReturn && !location.hash && !comments.hidden) {
-              const backlink = new URL(commentsConfig.backLink);
-              history.replaceState(history.state, '', location.pathname + location.search + backlink.hash);
-            }
-          });
-          commentsScript.addEventListener('error', function () {
+          if (commentsManager) {
+            commentsManager.show(term, title, backlink.href);
+          } else {
             commentsError.hidden = false;
             commentsError.textContent = '留言板載入失敗，請重新整理頁面再試。';
-          });
-          comments.appendChild(commentsScript);
+          }
         }
 
         function renderLibrary() {
+          currentComments = null;
           comments.hidden = true;
+          notifyParent();
           showView(libraryView);
         }
 
