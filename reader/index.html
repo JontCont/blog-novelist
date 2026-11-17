@@ -575,6 +575,7 @@
         const isGiscusReturn = new URL(location.href).searchParams.has('giscus');
         let commentsConfig;
         let commentsScript;
+        let commentsFrameReady = false;
         let activeGenre = '全部';
 
         if (isGiscusReturn && !location.hash) {
@@ -632,7 +633,7 @@
 
         function updateComments() {
           const frame = commentsContainer.querySelector('iframe');
-          if (frame && frame.contentWindow && commentsConfig) {
+          if (frame && frame.contentWindow && commentsConfig && commentsFrameReady) {
             frame.contentWindow.postMessage({ giscus: { setConfig: commentsConfig } }, 'https://giscus.app');
           }
         }
@@ -640,8 +641,11 @@
         new MutationObserver(function () {
           const frame = commentsContainer.querySelector('iframe');
           if (frame) {
-            frame.addEventListener('load', updateComments);
-            updateComments();
+            commentsFrameReady = false;
+            frame.addEventListener('load', function () {
+              commentsFrameReady = true;
+              updateComments();
+            });
           }
         }).observe(commentsContainer, { childList: true });
 
