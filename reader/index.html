@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="giscus:backlink" content="">
     <title>小說庫</title>
     <style>
       :root {
@@ -452,6 +453,19 @@
         outline-offset: 3px;
       }
 
+      .reader-comments {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--reader-rule);
+      }
+
+      .reader-comments[hidden] { display: none; }
+
+      .reader-comments h2 {
+        margin: 0 0 20px;
+        font-size: 1.25rem;
+      }
+
       @media (max-width: 600px) {
         .reader-shell { padding-top: 30px; }
 
@@ -521,6 +535,12 @@
           <a href="#" data-chapter-nav="next" hidden></a>
         </nav>
       </section>
+
+      <section id="reader-comments" class="reader-comments" aria-labelledby="reader-comments-title" hidden>
+        <h2 id="reader-comments-title">留言</h2>
+        <p id="reader-comments-error" role="status" hidden></p>
+        <div class="giscus"></div>
+      </section>
     </main>
 
     <script>
@@ -543,10 +563,29 @@
         const libraryView = document.getElementById('library-view');
         const novelView = document.getElementById('novel-view');
         const chapterView = document.getElementById('chapter-view');
+        const comments = document.getElementById('reader-comments');
+        const commentsTitle = document.getElementById('reader-comments-title');
+        const commentsError = document.getElementById('reader-comments-error');
+        const commentsContainer = comments.querySelector('.giscus');
+        const commentsBacklink = document.querySelector('meta[name="giscus:backlink"]');
         const novelsBySlug = new Map();
         const chaptersById = new Map();
         const newWindowMs = 7 * 24 * 60 * 60 * 1000;
+        const returnHashKey = 'novelist-giscus-return-hash';
+        const isGiscusReturn = new URL(location.href).searchParams.has('giscus');
+        let commentsConfig;
+        let commentsScript;
         let activeGenre = '全部';
+
+        if (isGiscusReturn && !location.hash) {
+          try {
+            const returnHash = sessionStorage.getItem(returnHashKey);
+            if (returnHash) history.replaceState(history.state, '', location.pathname + location.search + returnHash);
+          } catch (error) {
+            console.error('無法還原留言登入前的頁面。', error);
+          }
+        }
+
         const library = await fetch('library.json').then(function (response) {
           if (!response.ok) throw new Error('無法載入小說庫資料。');
           return response.json();
@@ -591,7 +630,73 @@
           chapterView.hidden = view !== chapterView;
         }
 
+        function updateComments() {
+          const frame = commentsContainer.querySelector('iframe');
+          if (frame && frame.contentWindow && commentsConfig) {
+            frame.contentWindow.postMessage({ giscus: { setConfig: commentsConfig } }, 'https://giscus.app');
+          }
+        }
+
+        new MutationObserver(function () {
+          const frame = commentsContainer.querySelector('iframe');
+          if (frame) {
+            frame.addEventListener('load', updateComments);
+            updateComments();
+          }
+        }).observe(commentsContainer, { childList: true });
+
+        function showComments(term, title) {
+          const backlink = new URL(location.href);
+          backlink.searchParams.delete('giscus');
+          commentsConfig = { term: term, backLink: backlink.href };
+          commentsTitle.textContent = title;
+          commentsBacklink.content = backlink.href;
+          comments.hidden = false;
+          try {
+            sessionStorage.setItem(returnHashKey, location.hash);
+          } catch (error) {
+            console.error('無法保存留言登入前的頁面。', error);
+          }
+
+          if (commentsScript) {
+            updateComments();
+            return;
+          }
+
+          commentsScript = document.createElement('script');
+          commentsScript.src = 'https://giscus.app/client.js';
+          Object.assign(commentsScript.dataset, {
+            repo: 'JontCont/blog-novelist',
+            repoId: 'R_kgDOUPbfNg',
+            category: 'Announcements',
+            categoryId: 'DIC_kwDOUPbfNs4DLUFN',
+            mapping: 'specific',
+            term: term,
+            strict: '1',
+            reactionsEnabled: '1',
+            emitMetadata: '0',
+            inputPosition: 'bottom',
+            theme: 'preferred_color_scheme',
+            lang: 'zh-TW',
+            loading: 'lazy'
+          });
+          commentsScript.crossOrigin = 'anonymous';
+          commentsScript.async = true;
+          commentsScript.addEventListener('load', function () {
+            if (isGiscusReturn && !location.hash && !comments.hidden) {
+              const backlink = new URL(commentsConfig.backLink);
+              history.replaceState(history.state, '', location.pathname + location.search + backlink.hash);
+            }
+          });
+          commentsScript.addEventListener('error', function () {
+            commentsError.hidden = false;
+            commentsError.textContent = '留言板載入失敗，請重新整理頁面再試。';
+          });
+          comments.appendChild(commentsScript);
+        }
+
         function renderLibrary() {
+          comments.hidden = true;
           showView(libraryView);
         }
 
@@ -601,6 +706,7 @@
           novelDescription.textContent = novel.description;
           renderNovelDetails(novel);
           showView(novelView);
+          showComments('novel:' + novel.slug, '作品留言');
         }
 
         function renderNovelDetails(novel) {
@@ -762,6 +868,7 @@
           });
           chapterContent.textContent = '載入中...';
           showView(chapterView);
+          showComments('chapter:' + entry.novel.slug + ':' + entry.chapter.number, '章節留言');
           const response = await fetch(entry.chapter.source);
           if (!response.ok) throw new Error('無法載入章節內容。');
           chapterContent.innerHTML = renderMarkdown(await response.text());
