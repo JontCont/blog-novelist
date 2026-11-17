@@ -617,6 +617,9 @@
         window.addEventListener('message', function (event) {
           if (!isEmbedded || event.source !== window.parent || !document.referrer) return;
           if (event.origin !== new URL(document.referrer).origin) return;
+          const origin = new URL(event.origin);
+          if (event.origin !== 'https://blog.startfms.uk' &&
+              !(['localhost', '127.0.0.1'].includes(origin.hostname) && ['http:', 'https:'].includes(origin.protocol))) return;
           if (!event.data || event.data.type !== 'novelist:connect') return;
           parentOrigin = event.origin;
           commentsJump.hidden = false;
